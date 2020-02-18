@@ -23,7 +23,7 @@ namespace Event_Hub.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Clubs()
         {
             return View();
         }
