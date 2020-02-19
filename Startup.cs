@@ -12,7 +12,6 @@ using Event_Hub.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Event_Hub.Database;
 
 namespace Event_Hub
 {
