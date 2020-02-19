@@ -1,5 +1,5 @@
 namespace Event_Hub.Models {
-    public class EventPlace {
+    public class Club {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }

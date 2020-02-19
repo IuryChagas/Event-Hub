@@ -63,7 +63,7 @@ namespace Event_Hub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EventPlaces",
+                name: "Clubs",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -77,7 +77,7 @@ namespace Event_Hub.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventPlaces", x => x.Id);
+                    table.PrimaryKey("PK_Clubs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -304,7 +304,7 @@ namespace Event_Hub.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EventPlaces");
+                name: "Clubs");
 
             migrationBuilder.DropTable(
                 name: "Orders");

@@ -1,3 +1,4 @@
+using Event_Hub.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Event_Hub.Controllers {
@@ -9,7 +10,7 @@ namespace Event_Hub.Controllers {
             return View ();
         }
         [HttpPost]
-        public IActionResult Save (EventPlace eventPlace){
+        public IActionResult Save (Club club){
             return Content("Saved!");
         }
 

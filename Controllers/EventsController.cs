@@ -1,3 +1,4 @@
+using Event_Hub.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Event_Hub.Controllers {
@@ -5,8 +6,13 @@ namespace Event_Hub.Controllers {
         public IActionResult Index () {
             return View ();
         }
-        public IActionResult Register () {
+        public IActionResult Create () {
             return View ();
+        }
+        
+        [HttpPost]
+        public IActionResult Save (Event events){
+            return Content("Saved!");
         }
     }
 }

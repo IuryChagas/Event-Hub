@@ -10,7 +10,7 @@ namespace Event_Hub.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Event> Events { get; set; }
-        public DbSet<EventPlace> EventPlaces { get; set; }
+        public DbSet<Club> Clubs { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Order> Orders { get; set; }
