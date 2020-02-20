@@ -3,12 +3,12 @@
 
 <h2>Create your Event</h2>
 
-<form class="form-horizontal" asp-controller="" asp-action="" method="POST">
+<form class="form-horizontal" asp-controller="Events" asp-action="Save" method="POST">
     <input type="text" class="form-control" asp-for="Title" placeholder="Title">
     <input type="number" class="form-control" asp-for="Price" placeholder="Price per ticket">
     <input type="date" class="form-control" asp-for="ReleaseDate">
     <input type="text" class="form-control" asp-for="EventPlace" placeholder="Club">
     <input type="number" class="form-control" asp-for="Units" placeholder="Total tickets" minlength="40">
 
-    <button type="button" class="btn btn-outline-primary">Publish now</button>
+    <button class="btn btn-outline-primary">Publish now</button>
 </form>
