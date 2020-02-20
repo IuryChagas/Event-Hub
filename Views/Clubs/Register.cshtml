@@ -1,7 +1,9 @@
 @model Event_Hub.Models.Club;
 <h2>Register Club</h2>
 
-<form class="form-horizontal" asp-controller="" asp-action="" method="POST">
+<form class="form-horizontal" asp-controller="Clubs" asp-action="Save" method="POST">
+
+    <input type="hidden" asp-for="Id" value="0">
     <input type="text" class="form-control" asp-for="Name" placeholder="Club name">
     <input type="text" class="form-control" asp-for="Street" placeholder="Street">
     <input type="number" class="form-control" asp-for="Number" placeholder="Number">
@@ -9,5 +11,5 @@
     <input type="text" class="form-control" asp-for="City" placeholder="City">
     <input type="number" class="form-control" asp-for="MaximumCapacity" placeholder="Maximum people capacity">
 
-    <button type="button" class="btn btn-outline-primary">Save</button>
+    <button class="btn btn-outline-primary">Save</button>
 </form>
