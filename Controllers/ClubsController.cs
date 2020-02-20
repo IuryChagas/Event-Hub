@@ -1,6 +1,7 @@
 using Event_Hub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Event_Hub.Data;
+using System.Linq;
 
 namespace Event_Hub.Controllers {
     public class ClubsController : Controller {
@@ -11,7 +12,8 @@ namespace Event_Hub.Controllers {
             this.eventdb = database;
         }
         public IActionResult Index () {
-            return View ();
+            var clubs = eventdb.Clubs.ToList();
+            return View (clubs);
         }
         public IActionResult Register () {
             return View ();
@@ -20,7 +22,7 @@ namespace Event_Hub.Controllers {
         public IActionResult Save (Club club){
             eventdb.Clubs.Add(club);
             eventdb.SaveChanges();
-            return Content("Club registered successfully!");
+            return RedirectToAction("Index");
         }
 
     }

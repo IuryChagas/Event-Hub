@@ -1,6 +1,32 @@
-﻿@{
+﻿@model IEnumerable<Event_Hub.Models.Club>
+@{
     ViewData["Title"] = "Clubs";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Page to detail Clubs locale.</p>
+<h2 align="center">Club locations</h2>
+
+@foreach (var Club in Model)
+{
+    <table class="table table-bordered table-sm table-hover" style="width: 50%; margin: 2rem auto;">
+        <tbody>
+                    <tr align="center">
+                        <th scope="row" colspan="2"><h2>@Club.Name</h2></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Street: <td align="center">@Club.Street</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">n°: <td align="center">@Club.Number</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cep: <td align="center">@Club.Cep</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">City: <td align="center">@Club.City</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Capacity: <td align="center">@Club.MaximumCapacity <i>people<i></td></th>
+                    </tr>
+        </tbody>
+    </table>
+}
