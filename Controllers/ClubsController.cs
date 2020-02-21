@@ -18,9 +18,24 @@ namespace Event_Hub.Controllers {
         public IActionResult Register () {
             return View ();
         }
+        public IActionResult Edit (int id) {
+            Club club = eventdb.Clubs.First(register => register.Id == id);
+            return View ("Register", club);
+        }
         [HttpPost]
         public IActionResult Save (Club club){
-            eventdb.Clubs.Add(club);
+            if (club.Id == 0)
+            {
+                eventdb.Clubs.Add(club);
+            }else{
+                Club clubDatabase = eventdb.Clubs.First(register => register.Id == club.Id);
+                clubDatabase.Name = club.Name;
+                clubDatabase.Street = club.Street;
+                clubDatabase.Number = club.Number;
+                clubDatabase.Cep = club.Cep;
+                clubDatabase.City = club.City;
+                clubDatabase.MaximumCapacity = club.MaximumCapacity;
+            }
             eventdb.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -27,6 +27,9 @@
                     <tr>
                         <th scope="row">Capacity: <td align="center">@Club.MaximumCapacity <i>people<i></td></th>
                     </tr>
+                    <tr align="center">
+                        <th scope="row" colspan="2"><a asp-action="Edit" asp-route-id="@Club.Id" class="btn btn btn-outline-warning">Edit</a></th>
+                    </tr>
         </tbody>
     </table>
 }
