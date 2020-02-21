@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Event_Hub.Models.Club>
 @{
     ViewData["Title"] = "Clubs";
+    <a class="btn btn-outline-primary" href="/Clubs/Register">Register Club</a>
 }
 
 <h2 align="center">Club locations</h2>
@@ -28,7 +29,10 @@
                         <th scope="row">Capacity: <td align="center">@Club.MaximumCapacity <i>people<i></td></th>
                     </tr>
                     <tr align="center">
-                        <th scope="row" colspan="2"><a asp-action="Edit" asp-route-id="@Club.Id" class="btn btn btn-outline-warning">Edit</a></th>
+                        <th colspan="2">
+                           <a asp-action="Edit" asp-route-id="@Club.Id" class="btn btn btn-outline-warning">Edit</a>
+                           <a asp-action="Delete" asp-route-id="@Club.Id" class="btn btn-outline-danger">Delete</a>
+                        </th>
                     </tr>
         </tbody>
     </table>

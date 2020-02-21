@@ -22,6 +22,13 @@ namespace Event_Hub.Controllers {
             Club club = eventdb.Clubs.First(register => register.Id == id);
             return View ("Register", club);
         }
+        
+        public IActionResult Delete (int id) {
+            Club club = eventdb.Clubs.First(register => register.Id == id);
+            eventdb.Clubs.Remove(club);
+            eventdb.SaveChanges();
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public IActionResult Save (Club club){
             if (club.Id == 0)
@@ -37,7 +44,7 @@ namespace Event_Hub.Controllers {
                 clubDatabase.MaximumCapacity = club.MaximumCapacity;
             }
             eventdb.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction ("Index");
         }
 
     }
