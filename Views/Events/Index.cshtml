@@ -25,7 +25,10 @@
                         <th scope="row">Ticket price: <td align="center">U$@events.Price.00</td></th>
                     </tr>
                     <tr align="center">
-                        <th scope="row" colspan="2"><a asp-action="Edit" asp-route-id="@events.Id" class="btn btn btn-outline-warning">Edit</a></th>
+                        <th colspan="2">
+                           <a asp-action="Edit" asp-route-id="@events.Id" class="btn btn btn-outline-warning">Edit</a>
+                           <a asp-action="Delete" asp-route-id="@events.Id" class="btn btn-outline-danger">Delete</a>
+                        </th>
                     </tr>
         </tbody>
     </table>

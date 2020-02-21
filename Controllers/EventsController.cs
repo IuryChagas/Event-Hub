@@ -22,6 +22,12 @@ namespace Event_Hub.Controllers {
             Event events = eventdb.Events.First(register => register.Id == id);
             return View ("Create", events);
         }
+        public IActionResult Delete (int id) {
+            Event events = eventdb.Events.First(register => register.Id == id);
+            eventdb.Events.Remove(events);
+            eventdb.SaveChanges();
+            return RedirectToAction ("Index");
+        }
         [HttpPost]
         public IActionResult Save (Event events){
             if (events.Id == 0)
