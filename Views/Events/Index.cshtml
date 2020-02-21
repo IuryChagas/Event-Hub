@@ -1,6 +1,32 @@
-﻿@{
+﻿@model IEnumerable<Event_Hub.Models.Event>
+@{
     ViewData["Title"] = "Events";
+  <a class="btn btn-outline-primary" href="/Events/Create">Create your Event</a>
 }
-<h1>@ViewData["Title"]</h1>
+<h2 align="center">Published events</h2>
 
-<p>Page to detail Events.</p>
+@foreach (var events in Model)
+{
+    <table class="table table-bordered table-sm table-hover" style="width: 50%; margin: 2rem auto;">
+        <tbody>
+                    <tr align="center" style="background-color: lightgray;">
+                        <th scope="row" colspan="2"><h3>@events.Title</h3></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Local: <td align="center">@events.EventPlace</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Release Date: <td align="center">@events.ReleaseDate</td></th>
+                    </tr>
+                   <tr>
+                        <th scope="row">Available tickets: <td align="center">@events.Units</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ticket price: <td align="center">U$@events.Price.00</td></th>
+                    </tr>
+                    <tr align="center">
+                        <th scope="row" colspan="2"><a href="/Event/Edit/@events.Id" class="btn btn btn-outline-warning">Edit</a></th>
+                    </tr>
+        </tbody>
+    </table>
+}

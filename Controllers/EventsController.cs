@@ -1,6 +1,7 @@
 using Event_Hub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Event_Hub.Data;
+using System.Linq;
 
 namespace Event_Hub.Controllers {
     public class EventsController : Controller {
@@ -11,7 +12,8 @@ namespace Event_Hub.Controllers {
             this.eventdb = database;
         }
         public IActionResult Index () {
-            return View ();
+            var events = eventdb.Events.ToList();
+            return View (events);
         }
         public IActionResult Create () {
             return View ();
@@ -21,7 +23,7 @@ namespace Event_Hub.Controllers {
         public IActionResult Save (Event events){
             eventdb.Events.Add(events);
             eventdb.SaveChanges();
-            return Content("Event successfully published!");
+            return RedirectToAction("Index");
         }
     }
 }
