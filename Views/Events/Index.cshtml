@@ -13,10 +13,10 @@
                         <th scope="row" colspan="2"><h3>@events.Title</h3></th>
                     </tr>
                     <tr>
-                        <th scope="row">Local: <td align="center">@events.EventPlace</td></th>
+                        <th scope="row">Local: <td align="center">@events.Club.Name</td></th>
                     </tr>
                     <tr>
-                        <th scope="row">Release Date: <td align="center">@events.ReleaseDate</td></th>
+                        <th scope="row">Release Date: <td align="center">@events.ReleaseDate.ToShortDateString()</td></th>
                     </tr>
                    <tr>
                         <th scope="row">Available tickets: <td align="center">@events.Units</td></th>
@@ -24,12 +24,15 @@
                     <tr>
                         <th scope="row">Ticket price: <td align="center">U$@events.Price.00</td></th>
                     </tr>
-                    <tr align="center">
-                        <th colspan="2">
-                           <a asp-action="Edit" asp-route-id="@events.Id" class="btn btn btn-outline-warning">Edit</a>
-                           <a asp-action="Delete" asp-route-id="@events.Id" class="btn btn-outline-danger">Delete</a>
-                        </th>
-                    </tr>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <tr align="center">
+                            <th colspan="2">
+                            <a asp-action="Edit" asp-route-id="@events.Id" class="btn btn btn-outline-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@events.Id" class="btn btn-outline-danger">Delete</a>
+                            </th>
+                        </tr>
+                    }
         </tbody>
     </table>
 }

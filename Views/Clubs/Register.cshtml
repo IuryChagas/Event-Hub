@@ -1,15 +1,24 @@
 @model Event_Hub.Models.Club;
+<style>
+    span { color: red; }
+</style>
 <h2>Register Club</h2>
 
 <form class="form-horizontal" asp-controller="Clubs" asp-action="Save" method="POST">
 
     <input type="hidden" asp-for="Id">
     <input type="text" class="form-control" asp-for="Name" placeholder="Club name">
+        <span asp-validation-for="Name"></span>
     <input type="text" class="form-control" asp-for="Street" placeholder="Street">
+        <span asp-validation-for="Street"></span>
     <input type="number" class="form-control" asp-for="Number" placeholder="Number">
-    <input type="number" class="form-control" asp-for="Cep" placeholder="CEP">
+        <span asp-validation-for="Number"></span>
+    <input type="number" class="form-control" asp-for="ZipCode" placeholder="Zip Code">
+        <span asp-validation-for="ZipCode"></span>
     <input type="text" class="form-control" asp-for="City" placeholder="City">
+        <span asp-validation-for="City"></span>
     <input type="number" class="form-control" asp-for="MaximumCapacity" placeholder="Maximum people capacity">
-
+        <span asp-validation-for="MaximumCapacity"></span>
+        <br>
     <button class="btn btn-outline-primary">Save</button>
 </form>

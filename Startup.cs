@@ -32,6 +32,13 @@ namespace Event_Hub
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
            services.AddRazorPages();
+
+            // Configurando Autorização admin
+
+            // email: admin@eventhub.com
+            // senha: @Admin2020
+           services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireUserName("admin@eventhub.com")));
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

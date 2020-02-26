@@ -20,7 +20,7 @@
                         <th scope="row">n°: <td align="center">@Club.Number</td></th>
                     </tr>
                     <tr>
-                        <th scope="row">Cep: <td align="center">@Club.Cep</td></th>
+                        <th scope="row">Cep: <td align="center">@Club.ZipCode</td></th>
                     </tr>
                     <tr>
                         <th scope="row">City: <td align="center">@Club.City</td></th>
@@ -28,12 +28,15 @@
                     <tr>
                         <th scope="row">Capacity: <td align="center">@Club.MaximumCapacity <i>people<i></td></th>
                     </tr>
-                    <tr align="center">
-                        <th colspan="2">
-                           <a asp-action="Edit" asp-route-id="@Club.Id" class="btn btn btn-outline-warning">Edit</a>
-                           <a asp-action="Delete" asp-route-id="@Club.Id" class="btn btn-outline-danger">Delete</a>
-                        </th>
-                    </tr>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <tr align="center">
+                            <th colspan="2">
+                            <a asp-action="Edit" asp-route-id="@Club.Id" class="btn btn btn-outline-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@Club.Id" class="btn btn-outline-danger">Delete</a>
+                            </th>
+                        </tr>
+                    }
         </tbody>
     </table>
 }
