@@ -53,11 +53,11 @@ namespace Event_Hub.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Street = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Street = table.Column<string>(nullable: false),
                     Number = table.Column<int>(nullable: false),
-                    Cep = table.Column<int>(nullable: false),
-                    City = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<string>(nullable: false),
+                    City = table.Column<string>(maxLength: 40, nullable: false),
                     MaximumCapacity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -78,24 +78,6 @@ namespace Event_Hub.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_eventManagers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
-                    ReleaseDate = table.Column<DateTime>(nullable: false),
-                    EventPlace = table.Column<string>(nullable: true),
-                    Units = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,6 +202,30 @@ namespace Event_Hub.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(maxLength: 30, nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    ReleaseDate = table.Column<DateTime>(nullable: false),
+                    ClubId = table.Column<int>(nullable: false),
+                    Units = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_Clubs_ClubId",
+                        column: x => x.ClubId,
+                        principalTable: "Clubs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -278,6 +284,11 @@ namespace Event_Hub.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_ClubId",
+                table: "Events",
+                column: "ClubId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_EventId",
                 table: "Orders",
                 column: "EventId");
@@ -301,9 +312,6 @@ namespace Event_Hub.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Clubs");
-
-            migrationBuilder.DropTable(
                 name: "eventManagers");
 
             migrationBuilder.DropTable(
@@ -320,6 +328,9 @@ namespace Event_Hub.Migrations
 
             migrationBuilder.DropTable(
                 name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Clubs");
         }
     }
 }

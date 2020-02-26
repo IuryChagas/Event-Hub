@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Event_Hub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200220142055_CreateIdentitySchema")]
+    [Migration("20200226182508_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,22 +25,28 @@ namespace Event_Hub.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Cep")
-                        .HasColumnType("int");
-
                     b.Property<string>("City")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
+                        .HasMaxLength(40);
 
                     b.Property<int>("MaximumCapacity")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("varchar(30) CHARACTER SET utf8mb4")
+                        .HasMaxLength(30);
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
                     b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
@@ -57,8 +63,9 @@ namespace Event_Hub.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("EventPlace")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int?>("ClubId")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
@@ -67,12 +74,16 @@ namespace Event_Hub.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasColumnType("varchar(30) CHARACTER SET utf8mb4")
+                        .HasMaxLength(30);
 
                     b.Property<int>("Units")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClubId");
 
                     b.ToTable("Events");
                 });
@@ -333,6 +344,15 @@ namespace Event_Hub.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Event_Hub.Models.Event", b =>
+                {
+                    b.HasOne("Event_Hub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Event_Hub.Models.Order", b =>
