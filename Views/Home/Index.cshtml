@@ -1,8 +1,38 @@
-﻿@{
+﻿@model IEnumerable<Event>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Your personalized experience is waiting.</p>
+    <h1 align="center">Top events</h1>
+
+@foreach (var events in Model)
+{
+    <table class="table table-bordered table-sm table-hover" style="width: 50%; margin: 2rem auto;">
+        <tbody>
+                    <tr align="center" style="background-color: lightgray;">
+                        <th scope="row" colspan="2"><h3>@events.Title</h3></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Local: <td align="center">@events.Club.Name</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Release Date: <td align="center">@events.ReleaseDate.ToShortDateString()</td></th>
+                    </tr>
+                   <tr>
+                        <th scope="row">Available tickets: <td align="center">@events.Units</td></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ticket price: <td align="center">U$@events.Price.00</td></th>
+                    </tr>
+                    <tr align="center" >
+                        <th scope="row" colspan="2">
+                            <button class="btn btn-outline-success buynow">Buy now</button>
+                        </th>
+                    </tr>
+        </tbody>
+    </table>
+}
 </div>
+<footer   style="position: relative;"></footer>

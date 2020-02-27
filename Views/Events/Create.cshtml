@@ -3,28 +3,51 @@
 {
     <h2>Create your Event</h2>
 
-<form class="form-horizontal" asp-controller="Events" asp-action="Save" method="POST">
-    <input type="hidden" asp-for="Id">
-    <input type="text" class="form-control" asp-for="Title" placeholder="Title">
-        <span asp-validation-for="Title"></span>
-    <input type="number" class="form-control" asp-for="Price" placeholder="Price per ticket">
-        <span asp-validation-for="Price"></span>
-    <input type="date" class="form-control" asp-for="ReleaseDate">
-        <span asp-validation-for="ReleaseDate"></span>
-    <div class="form-group form-control">
-        <label asp-for="ClubId" class="control-label">Choose club</label>
-        <select asp-for="ClubId" class="form-label" asp-items="ViewBag.Clubs">
-            <option disabled selected></option>
+<form asp-controller="Events" asp-action="Save" method="POST">
+    <div class="form-group">
+        <input type="hidden" asp-for="Id">
+        <label class="custom-label">Title</label>
+        <input type="text" class="form-control" asp-for="Title" placeholder="Title">
+            <span asp-validation-for="Title"></span>
+        <label class="custom-label">Price</label>
+        <input type="number" class="form-control" asp-for="Price" placeholder="Price per ticket">
+            <span asp-validation-for="Price"></span>
+        <label class="custom-label">Release Date</label>
+        <input type="date" max="9999-12-31" class="form-control" asp-for="ReleaseDate">
+            <span asp-validation-for="ReleaseDate"></span>
+        <div class="form-group">
+            <label asp-for="ClubId" class="control-label custom-label">Choose club</label>
+            <select asp-for="ClubId" class="form-control" asp-items="ViewBag.Clubs">
+            </select>
+            <span asp-validation-for="ClubId" class="text-danger"></span>
+        </div>
+        <label class="custom-label">Music Genre</label>
+        <select class="form-control">
+                <option>Pop</option>
+                <option>Rock</option>
+                <option>Jazz</option>
+                <option>Blue</option>
+                <option>Funk</option>
+                <option>Reggae</option>
+                <option>Rapper</option>
+                <option>Classical music</option>
         </select>
-        <span asp-validation-for="ClubId" class="text-danger"></span>
-    </div>
-    <input type="number" class="form-control" asp-for="Units" placeholder="Total tickets" minlength="40">
+        <label class="custom-label">Total tickets</label>
+        <input type="number" class="form-control" asp-for="Units" placeholder="Total tickets">
+            <span asp-validation-for="Units" class="text-danger"></span>
+            <br >
 
-    <button class="btn btn-outline-primary">Publish now</button>
+
+        <button class="btn btn-outline-primary">Publish now</button>
+    </div>
 </form>
 }else
 {
     <h2>No Club located.</h2>
     <p class="text-danger">You must register a club first!</p>
     <a class="btn btn-outline-primary" asp-controller="Clubs" asp-action="Register">Register now</a>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

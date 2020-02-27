@@ -13,12 +13,12 @@ namespace Event_Hub.Models {
 
 
         [Required(ErrorMessage = "{0} required.")]
-        [Range(10.0, 800.0, ErrorMessage = "{0} must be from {1} To {2}")]
+        [Range(10.0, 800.0, ErrorMessage = "{0} must be from U$10.00 To $800.00")]
         [Display(Name="Ticket price")]
         [DisplayFormat(DataFormatString ="{0:F2}")]
         public double Price { get; set; }
 
-        [Required(ErrorMessage = "{0} required.")]
+        [Required(ErrorMessage = "The {0} value is mandatory")]
         [DataType(DataType.Date)]
         [Display(Name="Date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
@@ -29,7 +29,9 @@ namespace Event_Hub.Models {
         
         [ForeignKey ("ClubId")]
         public virtual Club Club { get; set; }
+
+        [Required(ErrorMessage = "{0} required.")]
+        [Range(150, 2000, ErrorMessage = "{0} must be between {1} and {2}")]
         public int Units { get; set; }
-        public int CategoryId { get; set; }
     }
 }

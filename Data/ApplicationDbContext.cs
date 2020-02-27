@@ -11,8 +11,6 @@ namespace Event_Hub.Data
     {
         public DbSet<Event> Events { get; set; }
         public DbSet<Club> Clubs { get; set; }
-        public DbSet<EventManager> eventManagers { get; set; }
-        public DbSet<Person> Persons { get; set; }
         public DbSet<Order> Orders { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
 

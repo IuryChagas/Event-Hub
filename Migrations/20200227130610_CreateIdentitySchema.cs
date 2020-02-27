@@ -66,36 +66,6 @@ namespace Event_Hub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "eventManagers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_eventManagers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -211,8 +181,7 @@ namespace Event_Hub.Migrations
                     Price = table.Column<double>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     ClubId = table.Column<int>(nullable: false),
-                    Units = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    Units = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -312,13 +281,7 @@ namespace Event_Hub.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "eventManagers");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Persons");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

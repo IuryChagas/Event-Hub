@@ -14,14 +14,15 @@ namespace Event_Hub.Models {
         public string Street { get; set; }
 
         [Required(ErrorMessage = "Number is required.")]
-        [Range(0, int.MaxValue,ErrorMessage = "null is not accepted.")]
+        [Range(1, int.MaxValue,ErrorMessage = "null is not accepted.")]
         public int Number { get; set; }
 
         [Required(ErrorMessage = "Zip Code is required.")]
-        [MinLength (8, ErrorMessage = "Zip Code must to be minimum eight digits")]
+        [MinLength (8, ErrorMessage = "Zip Code must to be minimum 8 digits")]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "City is required.")]
+        [MinLength (5, ErrorMessage = "City must to be minimum 5 letters")]
         [StringLength(40,ErrorMessage = "City is very long")]
         public string City { get; set; }
 

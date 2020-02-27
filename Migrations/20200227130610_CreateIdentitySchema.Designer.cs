@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Event_Hub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200226182508_CreateIdentitySchema")]
+    [Migration("20200227130610_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,9 +60,6 @@ namespace Event_Hub.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ClubId")
                         .IsRequired()
                         .HasColumnType("int");
@@ -88,26 +85,6 @@ namespace Event_Hub.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("Event_Hub.Models.EventManager", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("eventManagers");
-                });
-
             modelBuilder.Entity("Event_Hub.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -128,26 +105,6 @@ namespace Event_Hub.Migrations
                     b.HasIndex("EventId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Event_Hub.Models.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

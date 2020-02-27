@@ -28,16 +28,17 @@ namespace Event_Hub
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(
+                    options => options.SignIn.RequireConfirmedAccount = true
+            ).AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-           services.AddRazorPages();
+            services.AddRazorPages();
 
             // Configurando Autorização admin
 
             // email: admin@eventhub.com
             // senha: @Admin2020
-           services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireUserName("admin@eventhub.com")));
+            services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireUserName("admin@eventhub.com")));
 
         }
 
