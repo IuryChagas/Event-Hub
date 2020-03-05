@@ -73,7 +73,6 @@ article,
 aside,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 main,
@@ -18657,11 +18656,6 @@ a.btn-icon-only {
 .dropdown-menu-xl {
   min-width: 450px;
   border-radius: 0.3rem;
-}
-
-.footer {
-  background: #f4f5f7;
-  padding: 1.5rem 0;
 }
 
 .footer .col-footer .heading {
